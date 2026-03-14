@@ -1,0 +1,33 @@
+{
+  "name": "backend_ctu-campus3d",
+  "version": "1.0.0",
+  "description": "backend ctu-campus3d",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hien-trn79/Backend_CTUCampus3D.git"
+  },
+  "keywords": [
+    "backend",
+    "connection",
+    "with",
+    "database",
+    "in",
+    "ctu-campus3d"
+  ],
+  "author": "hitran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hien-trn79/Backend_CTUCampus3D/issues"
+  },
+  "homepage": "https://github.com/hien-trn79/Backend_CTUCampus3D#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
