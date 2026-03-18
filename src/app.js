@@ -3,6 +3,7 @@ import cors from "cors";
 
 import ctuIIRouter from "./app/routes/ctuII.route.js";
 import diRouter from "./app/routes/di.route.js";
+import db from "./app/database/database.js";
 
 const app = express();
 app.use(cors());
@@ -29,5 +30,8 @@ app.use((err, req, res, next) => {
     message: err.message || "Có lỗi từ phía Server",
   });
 });
+
+// Connect to PostgreSQL database
+db.connect();
 
 export default app;

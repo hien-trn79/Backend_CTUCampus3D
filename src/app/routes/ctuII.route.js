@@ -7,8 +7,9 @@ const router = express.Router();
 router.get("/", ctuIIController.findAll);
 router.post("/", ctuIIController.create);
 router.delete("/", ctuIIController.deleteAll);
-router.get("/:id", ctuIIController.findOne);
-router.put("/:id", ctuIIController.update);
-router.delete("/:id", ctuIIController.deleteOne);
+
+router.get("/:tablename", ctuIIController.findOne);
+router.put("/:tablename", ctuIIController.update);
+router.delete("/:tablename", ctuIIController.deleteOne);
 
 export default router;

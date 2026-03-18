@@ -1,6 +1,9 @@
+import ctuIIService from "../services/ctuII.service.js";
+import tableMapService from "../enum/servermap.enum.js";
+
 class CtuII {
   // [GET] /api/ctuII/
-  findAll(req, res, next) {
+  async findAll(req, res, next) {
     res.json({
       message: "ctuII findAll",
     });
@@ -20,11 +23,29 @@ class CtuII {
     });
   }
 
-  // [GET] /api/ctuII/:id
-  findOne(req, res, next) {
-    res.json({
-      message: "ctuII findOne",
-    });
+  // [GET] /api/ctuII/:tablename
+  async findOne(req, res, next) {
+    try {
+      const tablename = req.params.tablename;
+      const serviceFunction = tableMapService[tablename];
+      if (!serviceFunction) {
+        return res.status(400).json({ error: "Invalid table name." });
+      }
+      await serviceFunction()
+        .then((data) => {
+          res.json(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          res
+            .status(500)
+            .json({ error: "An error occurred while fetching data." });
+        });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "An error occurred while processing the request." });
+    }
   }
 
   // [PUT] /api/ctuII/:id
