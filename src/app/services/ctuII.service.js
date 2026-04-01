@@ -1,4 +1,6 @@
-import { pool } from "../database/database.js";
+import config from "../config/config.js";
+
+const pool = config.db;
 
 class CtuIIService {
   async getAllPolygonService() {
@@ -53,6 +55,20 @@ class CtuIIService {
       });
       return rows;
     });
+    return result;
+  }
+
+  async getBuildingById(way_id) {
+    const sql = `select osm_id, building, name, way_area, way, src_bg from planet_osm_polygon where osm_id = $1`;
+    const result = await pool.query(sql, [way_id]).then((res) => res.rows[0]);
+    return result;
+  }
+  async updateBuildingById(way_id, updateData) {
+    const { src_bg } = updateData;
+    const sql = `UPDATE planet_osm_polygon SET src_bg = $1 WHERE osm_id = $2 RETURNING *`;
+    const result = await pool
+      .query(sql, [src_bg, way_id])
+      .then((res) => res.rows[0]);
     return result;
   }
 }

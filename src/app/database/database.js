@@ -1,19 +1,10 @@
-import { Pool } from "pg";
 import dotenv from "dotenv";
-
+import config from "../config/config.js";
 dotenv.config();
-
-const pool = new Pool({
-  host: process.env.POSTGRES_HOST,
-  port: process.env.POSTGRES_PORT,
-  user: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB,
-});
 
 class database {
   connect() {
-    pool
+    config.db
       .connect()
       .then(() => console.log("Connected to PostgreSQL database"))
       .catch((error) =>
@@ -21,5 +12,4 @@ class database {
       );
   }
 }
-export { pool };
 export default new database();
